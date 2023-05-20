@@ -1,4 +1,8 @@
 import "./NavbarStyles.css";
+import "./SignIn";
+import SignIn from "./SignIn";
+import "./SignUp";
+import SignUp from "./SignUp";
 
 function Navbar() {
   return (
@@ -41,8 +45,9 @@ function Navbar() {
           <ul id="navbar">
             
             <div class="button-container">
-              <a href="index.html" class="signin-button">Sign In</a>
-              <a href="index.html" class="signup-button">Sign Up</a>
+              
+              <a href="/signin" class="signin-button">Sign In</a>
+              <a href="/signin" class="signup-button">Sign Up</a>
             </div>
 
               
