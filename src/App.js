@@ -17,8 +17,8 @@ export default function App() {
       <div>
       <Navbar />
       <Route path="/" exact component={Home}/>
-            <Route path="/UpdateUser" exact component={UpdateUser}/> 
-            <Route path="/DashBoard" exact component={DashBoard}/>
+            <Route path="/updateuser" exact component={UpdateUser}/> 
+            <Route path="/dashboard" exact component={DashBoard}/>
             <Route path="/signup" exact component= {SignUp} />
             <Route path="/signin" exact component= {SignIn} />
             <Route path="/addincome" exact component={AddIncome}/>
