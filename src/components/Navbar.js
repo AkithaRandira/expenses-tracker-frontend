@@ -43,15 +43,14 @@ function Navbar() {
 
         <div>
           <ul id="navbar">
-            
             <div class="button-container">
-              
-              <a href="/signin" class="signin-button">Sign In</a>
-              <a href="/signin" class="signup-button">Sign Up</a>
+              <a href="/signin" class="signin-button">
+                Sign In
+              </a>
+              <a href="/signup" class="signup-button">
+                Sign Up
+              </a>
             </div>
-
-              
-            
           </ul>
         </div>
 
