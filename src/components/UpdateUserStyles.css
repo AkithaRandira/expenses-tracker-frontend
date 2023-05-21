@@ -1,0 +1,33 @@
+.UpdateUser{
+    width: 600px;
+    background-color:#219f9c;
+    color:whitesmoke;
+    padding:50px;
+    text-align: center;
+    border-radius: 20px;
+    margin-left: 350px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.field{
+    width:250px;
+    height:30px;
+}
+
+.button{
+    color: white;
+    background-color: rgb(5, 75, 92);
+    border-radius: 5px 5px 5px 5px;
+    width:150px;
+    height:30px;
+    cursor:pointer;
+}
+
+.button:hover{
+    background-color: rgb(111, 111, 128);
+    border-radius: 5px 5px 5px 5px;
+    width:150px;
+    height:30px;
+    cursor:pointer;
+}
