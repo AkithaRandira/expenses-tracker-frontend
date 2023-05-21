@@ -1,0 +1,98 @@
+
+
+.updatebtn{
+    color: rgb(243, 235, 235);
+    background-color:#5392db; ;
+    border-radius: 5px 5px 5px 5px;
+    width:70px;
+    height:40px;
+    cursor:pointer;
+    align-items: left;
+
+}
+.dashboard{
+    width:20%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 120px;
+    margin-bottom: 120px;
+    text-align: justify;
+}
+
+.DashboardItems1{
+    margin: 0px 40px;
+    padding-right:350px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: #8acbde;
+    -webkit-box-shadow: 0px 0px 7px 2px #000000; 
+box-shadow: 0px 0px 7px 2px #000000;
+    
+
+}
+.DashboardItems2{
+    margin: 0px 40px;
+    padding-right:350px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    background-color: #219f9c;
+    -webkit-box-shadow: 0px 0px 7px 2px #000000; 
+box-shadow: 0px 0px 7px 2px #000000;
+    
+}
+
+ .mainTitle{
+    font-size: 20px;
+    text-align: right;  
+}
+
+.Container {
+    margin:10px 0px;
+    align-items: left;
+}
+
+.title{
+    font-size: 12px;
+    color:rgb(54, 47, 47);
+    
+}
+
+.button01{
+    color:black;
+    background-color:#219f9c ;
+    border-radius: 5px 5px 5px 5px;
+    width:200px;
+    height:30px;
+    cursor:pointer;
+    align-items:center;
+}
+.button02{
+    color: black;
+    background-color:#8acbde; ;
+    border-radius: 5px 5px 5px 5px;
+    width:200px;
+    height:30px;
+    cursor:pointer;
+    align-items: center;
+}
+
+.button01:hover{
+    background-color: rgb(92, 133, 134);
+    border-radius: 5px 5px 5px 5px;
+    width:150px;
+    height:30px;
+    cursor:pointer;
+} 
+
+.button02:hover{
+    background-color: rgb(92, 133, 134);
+    border-radius: 5px 5px 5px 5px;
+    width:150px;
+    height:30px;
+    cursor:pointer;
+} 
+
+
+
