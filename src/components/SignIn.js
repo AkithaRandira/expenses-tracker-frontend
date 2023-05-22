@@ -1,6 +1,8 @@
 import "./SignInStyles.css";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { loginUserAction } from "../redux/slices/users/usersSlices";
 
 //form validation
 const formSchema = Yup.object({
@@ -9,6 +11,9 @@ const formSchema = Yup.object({
 });
 
 export default function SignIn() {
+  //dispatch
+  const dispatch = useDispatch();
+
   //formik form
   const formik = useFormik({
     initialValues: {
@@ -16,7 +21,7 @@ export default function SignIn() {
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      dispatch(loginUserAction(values))
     },
     validationSchema: formSchema,
   });
