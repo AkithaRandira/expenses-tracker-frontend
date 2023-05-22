@@ -1,14 +1,16 @@
+import Home from "./Home";
 import "./NavbarStyles.css";
 import "./SignIn";
 import SignIn from "./SignIn";
 import "./SignUp";
 import SignUp from "./SignUp";
 
+
 function Navbar() {
   return (
     <>
       <nav>
-        <a href="index.html">
+        <a href="/">
           <svg
             id="logo-15"
             width="49"
