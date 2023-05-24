@@ -21,7 +21,7 @@ export default function SignIn() {
       password: "",
     },
     onSubmit: (values) => {
-      dispatch(loginUserAction(values))
+      dispatch(loginUserAction(values));
     },
     validationSchema: formSchema,
   });
@@ -59,7 +59,7 @@ export default function SignIn() {
             </div>
 
             <div className="btn-field">
-              <button type="submit" id="signinBtn" className="disable">
+              <button type="submit" id="signinBtn">
                 Sign in
               </button>
             </div>
