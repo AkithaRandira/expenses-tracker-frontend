@@ -74,8 +74,8 @@ const userSlices = createSlice({
     //handle rejected state
     builder.addCase(loginUserAction.rejected, (state, action) => {
       state.userLoading = false;
-      state.userAppError = action?.payload?.message;
-      state.userServerError = action?.error?.message;
+      state.userAppError = action?.payload?.msg;
+      state.userServerError = action?.error?.msg;
     });
 
     //register
@@ -97,8 +97,8 @@ const userSlices = createSlice({
     //handle rejected state
     builder.addCase(registerUserAction.rejected, (state, action) => {
       state.userLoading = false;
-      state.userAppError = action?.payload?.message;
-      state.userServerError = action?.error?.message;
+      state.userAppError = action?.payload?.msg;
+      state.userServerError = action?.error?.msg;
     });
   },
 });

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./SignUpStyles.css";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { registerUserAction } from "../redux/slices/users/usersSlices";
+import DisabledButton from "./DisabledButton";
+import { useHistory } from "react-router-dom";
 
 //form validation
 const formSchema = Yup.object({
@@ -14,6 +16,15 @@ const formSchema = Yup.object({
 });
 
 export default function SignUp() {
+  //history
+  const history = useHistory();
+
+  //get data from store
+  const user = useSelector((state) => state?.users);
+
+  //destructure the user
+  const { userAppError, userServerError, userLoading, userAuth } = user;
+
   //dispatch
   const dispatch = useDispatch();
 
@@ -31,6 +42,13 @@ export default function SignUp() {
     validationSchema: formSchema,
   });
 
+  //redirect user
+  useEffect(() => {
+    if (userAuth) {
+      return history.push("/signin");
+    }
+  }, [userAuth]);
+
   return (
     <div className="signin">
       <div className="container">
@@ -38,6 +56,12 @@ export default function SignUp() {
           <h1 id="title">Sign Up</h1>
           <form onSubmit={formik.handleSubmit}>
             <div className="input-group">
+              {userAppError || userServerError ? (
+                <div>
+                  {userServerError}
+                  {userAppError}{" "}
+                </div>
+              ) : null}
               <div className="input-field" id="nameField">
                 <i className="fa-solid fa-user"></i>
                 <input
@@ -89,9 +113,13 @@ export default function SignUp() {
             </div>
 
             <div className="btn-field">
-              <button type="submit" id="signupBtn">
-                Sign up
-              </button>
+              {userLoading ? (
+                <DisabledButton />
+              ) : (
+                <button type="submit" id="signinBtn">
+                  Sign Up
+                </button>
+              )}
             </div>
           </form>
         </div>
