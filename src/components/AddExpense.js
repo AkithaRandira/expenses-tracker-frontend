@@ -1,9 +1,11 @@
 import React from "react";
 import "./AddExpenseStyles.css";
+import NavbarAfterLogin from "./NavbarAfterLogin";
 
 export default function AddExpense() {
   return (
     <div>
+      <NavbarAfterLogin/>
       <div className="box">
         <form className="expensebox">
           <br />

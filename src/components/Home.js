@@ -1,8 +1,10 @@
 import "./HomeStyles.css";
+import Navbar from "./Navbar";
 
 function Home() {
   return (
     <>
+      <Navbar />
       <div className="home">
         <div className="section-container">
           <div className="columns image">&nbsp;</div>

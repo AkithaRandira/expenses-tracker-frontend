@@ -1,9 +1,12 @@
 import React from "react";
 import "./DashBoard.css";
+import NavbarAfterLogin from "./NavbarAfterLogin";
+
 
 export default function UpdateUser() {
   return (
     <div className="Content">
+      <NavbarAfterLogin/>
       <button class="updatebtn">Edit profile</button>
       <div className="dashboard">
         <div className="DashboardItems1">

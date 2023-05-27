@@ -6,6 +6,8 @@ import { loginUserAction } from "../redux/slices/users/usersSlices";
 import DisabledButton from "./DisabledButton";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import Navbar from "./Navbar";
+
 
 //form validation
 const formSchema = Yup.object({
@@ -46,7 +48,9 @@ export default function SignIn() {
   }, [userAuth]);
 
   return (
+    
     <div className="signin">
+      <Navbar />
       <div className="container">
         <div className="form-box">
           <h1 id="title">Sign In</h1>

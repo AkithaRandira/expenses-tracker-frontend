@@ -1,9 +1,11 @@
 import React from "react";
 import "./AddIncomeStyles.css";
+import NavbarAfterLogin from "./NavbarAfterLogin";
 
 export default function AddIncome() {
   return (
     <div>
+      <NavbarAfterLogin />
       <div className="box">
         <form className="incomebox">
           <br />

@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import { registerUserAction } from "../redux/slices/users/usersSlices";
 import DisabledButton from "./DisabledButton";
 import { useHistory } from "react-router-dom";
+import Navbar from "./Navbar";
+
 
 //form validation
 const formSchema = Yup.object({
@@ -51,6 +53,7 @@ export default function SignUp() {
 
   return (
     <div className="signin">
+      <Navbar />
       <div className="container">
         <div className="form-box">
           <h1 id="title">Sign Up</h1>
