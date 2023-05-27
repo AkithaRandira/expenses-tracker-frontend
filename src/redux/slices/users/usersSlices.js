@@ -16,6 +16,10 @@ export const loginUserAction = createAsyncThunk(
         payload,
         config
       );
+
+      //save user into local storage
+      localStorage.setItem("userInfo", JSON.stringify(data));
+
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -40,6 +44,7 @@ export const registerUserAction = createAsyncThunk(
         payload,
         config
       );
+
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -51,9 +56,17 @@ export const registerUserAction = createAsyncThunk(
 );
 
 //slices
+
+//get user from local storage and store it in our redux store
+const userLoginFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : undefined;
+
 const userSlices = createSlice({
   name: "users",
-  initialState: {},
+  initialState: {
+    userAuth: userLoginFromStorage,
+  },
   extraReducers: (builder) => {
     //login
     //handle pending state
