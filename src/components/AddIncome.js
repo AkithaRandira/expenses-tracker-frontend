@@ -26,7 +26,9 @@ export default function AddIncome() {
           <br />
 
           <br />
-          <button class="btn">Record Income</button>
+          <button type="submit" class="btn">
+            Record Income
+          </button>
         </form>
       </div>
     </div>
