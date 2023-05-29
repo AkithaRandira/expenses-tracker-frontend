@@ -10,6 +10,7 @@ import SignIn from "./components/SignIn";
 import AddIncome from "./components/AddIncome";
 import AddExpense from "./components/AddExpense";
 import ProtectedRoute from "./components/Navigation/ProtectedRoute";
+import ExpensesList from "./components/ExpensesList";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/dashboard" exact component={DashBoard} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/signin" exact component={SignIn} />
+        <ProtectedRoute path="/expenselist" exact component={ExpensesList} />
         <ProtectedRoute path="/addincome" exact component={AddIncome} />
         <ProtectedRoute path="/addexpense" exact component={AddExpense} />
         <Footer />
