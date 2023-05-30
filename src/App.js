@@ -11,19 +11,21 @@ import AddIncome from "./components/AddIncome";
 import AddExpense from "./components/AddExpense";
 import ProtectedRoute from "./components/Navigation/ProtectedRoute";
 import ExpensesList from "./components/ExpensesList";
+import EditExpense from "./components/EditExpense";
 
 export default function App() {
   return (
     <Router>
       <div>
         <Route path="/" exact component={Home} />
-        <Route path="/updateuser" exact component={UpdateUser} />
+        <Route path="/update-user" exact component={UpdateUser} />
         <Route path="/dashboard" exact component={DashBoard} />
-        <Route path="/signup" exact component={SignUp} />
-        <Route path="/signin" exact component={SignIn} />
-        <ProtectedRoute path="/expenselist" exact component={ExpensesList} />
-        <ProtectedRoute path="/addincome" exact component={AddIncome} />
-        <ProtectedRoute path="/addexpense" exact component={AddExpense} />
+        <Route path="/sign-up" exact component={SignUp} />
+        <Route path="/sign-in" exact component={SignIn} />
+        <ProtectedRoute path="/expense-list" exact component={ExpensesList} />
+        <ProtectedRoute path="/edit-expense" exact component={EditExpense} />
+        <ProtectedRoute path="/add-income" exact component={AddIncome} />
+        <ProtectedRoute path="/add-expense" exact component={AddExpense} />
         <Footer />
       </div>
     </Router>

@@ -12,8 +12,8 @@ function NavbarAfterLogin() {
         <div>
           <ul id="navbar">
             <div class="button-container">
-              <a href="/expenselist">Expense List</a>
-              <a href="/incomelist">Income List</a>
+              <a href="/expense-list">Expense List</a>
+              <a href="/income-list">Income List</a>
               <a href="/dashboard" class="signup-button">
                 DashBoard
               </a>
@@ -27,10 +27,10 @@ function NavbarAfterLogin() {
         <div>
           <ul id="navbar">
             <div class="button-container">
-              <a href="/addexpense" class="signin-button">
+              <a href="/add-expense" class="signin-button">
                 New Expense
               </a>
-              <a href="/addincome" class="signin-button">
+              <a href="/add-income" class="signin-button">
                 New Income
               </a>
               <a href="/" class="signup-button">

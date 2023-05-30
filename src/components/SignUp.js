@@ -47,7 +47,7 @@ export default function SignUp() {
   //redirect user
   useEffect(() => {
     if (userAuth) {
-      return history.push("/signin");
+      return history.push("/sign-in");
     }
   }, [userAuth]);
 

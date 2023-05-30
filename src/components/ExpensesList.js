@@ -22,7 +22,7 @@ export default function ExpensesList() {
 
       <h6>Recent Expense transactions</h6>
       <p>Below is the history of your expense transactions records</p>
-      <Link to="/addexpense" className="btn btn-primary">
+      <Link to="/add-expense" className="btn btn-primary">
         New Expense
       </Link>
 

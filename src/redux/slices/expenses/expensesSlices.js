@@ -61,10 +61,42 @@ export const fetchAllExpenseAction = createAsyncThunk(
   }
 );
 
+//update expense action
+export const updateExpenseAction = createAsyncThunk(
+  "expense/update",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    //get user token from store
+    const userToken = getState()?.users?.userAuth?.token;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+
+    try {
+      //making http call
+      const { data } = await axios.put(
+        `${baseURL}/expense/${payload?.id}`,
+        payload,
+        config
+      );
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 //expense slices
 const expensesSlices = createSlice({
   name: "expenses",
-  initialState: { expenses: ["45", "54"] },
+  initialState: {},
   extraReducers: (builder) => {
     //create expense
     builder.addCase(createExpenseAction.pending, (state, action) => {
@@ -76,14 +108,13 @@ const expensesSlices = createSlice({
       state.appError = undefined;
       state.serverError = undefined;
     });
-
     builder.addCase(createExpenseAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action?.payload?.msg;
       state.serverError = action?.error?.msg;
     });
 
-    //fetch all expense
+    //fetch all expenses
     builder.addCase(fetchAllExpenseAction.pending, (state, action) => {
       state.loading = true;
     });
@@ -93,8 +124,23 @@ const expensesSlices = createSlice({
       state.appError = undefined;
       state.serverError = undefined;
     });
-
     builder.addCase(fetchAllExpenseAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload?.msg;
+      state.serverError = action?.error?.msg;
+    });
+
+    //update expense
+    builder.addCase(updateExpenseAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(updateExpenseAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.expenseUpdated = action?.payload;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(updateExpenseAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action?.payload?.msg;
       state.serverError = action?.error?.msg;

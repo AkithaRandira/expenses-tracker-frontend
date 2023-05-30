@@ -1,9 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function ContentDetails(item) {
+  const history = useHistory();
   return (
     <>
-      {console.log(item)}
       <tr>
         <th>
           {item?.user?.firstname} {item?.user?.lastname}
@@ -13,7 +14,17 @@ export default function ContentDetails(item) {
         <td>{item?.amount}</td>
         <td>{item?.createdAt}</td>
         <td>
-          <button className="btn btn-danger">Delete</button>
+          <button
+            onClick={() =>
+              history.push({
+                pathname: `/edit-expense`,
+                state: { expense: item },
+              })
+            }
+            className="btn"
+          >
+            Update
+          </button>
         </td>
       </tr>
     </>

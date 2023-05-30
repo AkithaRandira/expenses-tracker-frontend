@@ -46,10 +46,10 @@ function Navbar() {
         <div>
           <ul id="navbar">
             <div class="button-container">
-              <a href="/signin" class="signin-button">
+              <a href="/sign-in" class="signin-button">
                 Sign In
               </a>
-              <a href="/signup" class="signup-button">
+              <a href="/sign-up" class="signup-button">
                 Sign Up
               </a>
             </div>
