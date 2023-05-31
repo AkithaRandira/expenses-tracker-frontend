@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import NavbarAfterLogin from "./NavbarAfterLogin";
 import ContentDetails from "./ContentDetails";
 import AppPagination from "./AppPagination";
+import Loading from "./Loading";
+import ErrorDisplayMessage from "./ErrorDisplayMessage";
 
 export default function ExpensesList() {
   //dispatch
@@ -21,41 +23,54 @@ export default function ExpensesList() {
 
   return (
     <div>
-      <NavbarAfterLogin />
+      {loading ? (
+        <Loading />
+      ) : appError || serverError ? (
+        <ErrorDisplayMessage>
+          {serverError} {appError}
+        </ErrorDisplayMessage>
+      ) : (
+        <div>
+          <NavbarAfterLogin />
 
-      <h6>Recent Expense transactions</h6>
-      <p>Below is the history of your expense transactions records</p>
-      <Link to="/add-expense" className="btn btn-primary">
-        New Expense
-      </Link>
+          <h6>Recent Expense transactions</h6>
+          <p>Below is the history of your expense transactions records</p>
+          <Link to="/add-expense" className="btn btn-primary">
+            New Expense
+          </Link>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Withdrawed By</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? (
-            <h1>loading</h1>
-          ) : appError || serverError ? (
-            <div>Error</div>
-          ) : expensesList?.docs?.length <= 0 ? (
-            <h1>No Expenses Found</h1>
-          ) : (
-            expensesList?.docs?.map((expense) => {
-              return <ContentDetails key={expense?._id} {...expense} />;
-            })
-          )}
-        </tbody>
-      </table>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Withdrawed By</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <h1>loading</h1>
+              ) : appError || serverError ? (
+                <div>Error</div>
+              ) : expensesList?.docs?.length <= 0 ? (
+                <h1>No Expenses Found</h1>
+              ) : (
+                expensesList?.docs?.map((expense) => {
+                  return <ContentDetails key={expense?._id} {...expense} />;
+                })
+              )}
+            </tbody>
+          </table>
 
-      <AppPagination setPage={setPage} pageNumber={expensesList?.totalPages} />
+          <AppPagination
+            setPage={setPage}
+            pageNumber={expensesList?.totalPages}
+          />
+        </div>
+      )}
     </div>
   );
 }
