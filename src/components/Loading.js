@@ -15,15 +15,23 @@ export default function Loading() {
 
   return (
     <div>
-      {Object.entries({
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "black",
-      }).map(([key, value]) => (
-        <div key={key}>{value}</div>
-      ))}
+      {
+        ({
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          backgroundColor: "black",
+        },
+        (
+          <ClipLoader
+            color={color}
+            loading={loading}
+            css={override}
+            size={150}
+          />
+        ))
+      }
     </div>
   );
 }
