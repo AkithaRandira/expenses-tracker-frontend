@@ -13,7 +13,6 @@ import ProtectedRoute from "./components/Navigation/ProtectedRoute";
 import ExpensesList from "./components/ExpensesList";
 import EditExpense from "./components/EditExpense";
 
-
 export default function App() {
   return (
     <Router>
