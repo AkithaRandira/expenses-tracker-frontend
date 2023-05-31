@@ -13,13 +13,13 @@ export default function ContentDetails(item) {
         <td>{item?.title}</td>
         <td>{item?.description}</td>
         <td>{item?.amount}</td>
-        <td>{dateFormatter(item?.createdAt)}</td>
+        <td>{item?.createdAt && dateFormatter(item?.createdAt)}</td>
         <td>
           <button
             onClick={() =>
               history.push({
-                pathname: `/edit-expense`,
-                state: { expense: item },
+                pathname: `/edit`,
+                state: { item },
               })
             }
             className="btn"

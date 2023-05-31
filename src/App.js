@@ -11,7 +11,8 @@ import AddIncome from "./components/AddIncome";
 import AddExpense from "./components/AddExpense";
 import ProtectedRoute from "./components/Navigation/ProtectedRoute";
 import ExpensesList from "./components/ExpensesList";
-import EditExpense from "./components/EditExpense";
+import EditContent from "./components/EditContent";
+import IncomesList from "./components/IncomesList";
 
 export default function App() {
   return (
@@ -23,7 +24,9 @@ export default function App() {
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/sign-in" exact component={SignIn} />
         <ProtectedRoute path="/expense-list" exact component={ExpensesList} />
-        <ProtectedRoute path="/edit-expense" exact component={EditExpense} />
+        <ProtectedRoute path="/income-list" exact component={IncomesList} />
+        <ProtectedRoute path="/edit" exact component={EditContent} />
+
         <ProtectedRoute path="/add-income" exact component={AddIncome} />
         <ProtectedRoute path="/add-expense" exact component={AddExpense} />
         <Footer />

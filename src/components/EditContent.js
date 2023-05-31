@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { updateExpenseAction } from "../redux/slices/expenses/expensesSlices";
+import { updateIncomeAction } from "../redux/slices/incomes/incomesSlices";
 import DisabledButton from "./DisabledButton";
 
 //form validation
@@ -15,10 +16,10 @@ const formSchema = Yup.object({
   amount: Yup.number().required("Amount is required"),
 });
 
-export default function EditExpense() {
-  //accessing state to get expense details
+export default function EditContent() {
+  //accessing state to get content details
   const location = useLocation();
-  const { expense } = location.state;
+  const { item } = location.state;
 
   //dispatch
   const dispatch = useDispatch();
@@ -26,17 +27,18 @@ export default function EditExpense() {
   //formik form
   const formik = useFormik({
     initialValues: {
-      title: expense?.title,
-      description: expense?.description,
-      amount: expense?.amount,
+      title: item?.title,
+      description: item?.description,
+      amount: item?.amount,
     },
     onSubmit: (values) => {
       const data = {
         ...values,
-        id: expense?._id,
+        id: item?._id,
       };
-
-      dispatch(updateExpenseAction(data));
+      item?.type === "expense"
+        ? dispatch(updateExpenseAction(data))
+        : dispatch(updateIncomeAction(data));
     },
     validationSchema: formSchema,
   });
@@ -51,12 +53,18 @@ export default function EditExpense() {
       <div className="box">
         <form className="incomebox" onSubmit={formik.handleSubmit}>
           <br />
-          <h5>Expense</h5>
+
           {/* Displaying Error */}
           {appError || serverError ? <div>Error</div> : null}
           <br />
           <b>
-            <h4>Update an existing expense</h4>
+            <h4>
+              {item?.type === "Income" ? (
+                <h2>Update Income</h2>
+              ) : (
+                <h2>Update Expense</h2>
+              )}
+            </h4>
           </b>
 
           <br />
@@ -97,7 +105,7 @@ export default function EditExpense() {
               <DisabledButton />
             ) : (
               <button type="submit" id="btn">
-                Update Expense
+                Update
               </button>
             )}
           </div>

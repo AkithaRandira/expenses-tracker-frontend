@@ -8,14 +8,14 @@ export default function AppPagination({ pageNumber, setPage }) {
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           {array?.map((page) => (
-            <li key={page} className="page-item">
+            <div key={page} className="page-item">
               <button
                 onClick={(e) => setPage(e.target.textContent)}
                 className="page-link"
               >
                 {++page}
               </button>
-            </li>
+            </div>
           ))}
         </ul>
       </nav>
