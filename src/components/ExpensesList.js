@@ -1,20 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllExpenseAction } from "../redux/slices/expenses/expensesSlices";
 import { Link } from "react-router-dom";
 import NavbarAfterLogin from "./NavbarAfterLogin";
 import ContentDetails from "./ContentDetails";
+import AppPagination from "./AppPagination";
 
 export default function ExpensesList() {
   //dispatch
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchAllExpenseAction(1));
-  }, [dispatch]);
+  const [page, setPage] = useState(1);
 
   //get all expenses
   const allExpenses = useSelector((state) => state?.expenses);
   const { loading, appError, serverError, expensesList } = allExpenses;
+
+  useEffect(() => {
+    dispatch(fetchAllExpenseAction(+page));
+  }, [dispatch, page, setPage]);
 
   return (
     <div>
@@ -51,6 +54,8 @@ export default function ExpensesList() {
           )}
         </tbody>
       </table>
+
+      <AppPagination setPage={setPage} pageNumber={expensesList?.totalPages} />
     </div>
   );
 }
