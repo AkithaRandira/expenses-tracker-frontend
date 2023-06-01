@@ -1,6 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import baseURL from "../../../utils/baseURL";
+
+//action for redirect
+export const resetIncomeCreated = createAction("income/created/reset");
+export const resetIncomeUpdated = createAction("income/updated/reset");
 
 //add incomes action
 export const createIncomeAction = createAsyncThunk(
@@ -19,6 +23,9 @@ export const createIncomeAction = createAsyncThunk(
     try {
       //making http call
       const { data } = await axios.post(`${baseURL}/income`, payload, config);
+
+      //dispatch action to reset incomeCreated
+      dispatch(resetIncomeCreated());
 
       return data;
     } catch (error) {
@@ -83,6 +90,9 @@ export const updateIncomeAction = createAsyncThunk(
         config
       );
 
+      //dispatch action to reset incomeUpdated
+      dispatch(resetIncomeUpdated());
+
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -102,11 +112,18 @@ const incomesSlices = createSlice({
     builder.addCase(createIncomeAction.pending, (state, action) => {
       state.loading = true;
     });
+
+    //reset action
+    builder.addCase(resetIncomeCreated, (state, action) => {
+      state.isIncomeCreated = true;
+    });
+
     builder.addCase(createIncomeAction.fulfilled, (state, action) => {
       state.loading = false;
       state.incomeCreated = action?.payload;
       state.appError = undefined;
       state.serverError = undefined;
+      state.isIncomeCreated = false;
     });
     builder.addCase(createIncomeAction.rejected, (state, action) => {
       state.loading = false;
@@ -134,6 +151,12 @@ const incomesSlices = createSlice({
     builder.addCase(updateIncomeAction.pending, (state, action) => {
       state.loading = true;
     });
+
+    //reset action
+    builder.addCase(resetIncomeUpdated, (state, action) => {
+      state.isIncomeUpdated = true;
+    });
+
     builder.addCase(updateIncomeAction.fulfilled, (state, action) => {
       state.loading = false;
       state.incomeUpdated = action?.payload;

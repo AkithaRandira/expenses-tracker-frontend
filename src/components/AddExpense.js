@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useDebugValue } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./AddExpenseStyles.css";
 import NavbarAfterLogin from "./NavbarAfterLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { createExpenseAction } from "../redux/slices/expenses/expensesSlices";
+import { useLocation, useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import DisabledButton from "./DisabledButton";
+import ErrorDisplayMessage from "./ErrorDisplayMessage";
 
 //form validation
 const formSchema = Yup.object({
@@ -14,6 +18,11 @@ const formSchema = Yup.object({
 });
 
 export default function AddExpense() {
+  //accessing state to get location details
+  const location = useLocation();
+
+  const history = useHistory();
+
   //dispatch
   const dispatch = useDispatch();
 
@@ -30,6 +39,16 @@ export default function AddExpense() {
     validationSchema: formSchema,
   });
 
+  //get expenseCreated from store
+  const state = useSelector((state) => state?.expenses);
+  const { loading, appError, serverError, expenseCreated, isExpenseCreated } =
+    state;
+
+  //redirecting to expense list page
+  useEffect(() => {
+    if (isExpenseCreated) history.push("/expense-list");
+  }, [isExpenseCreated, dispatch]);
+
   return (
     <div>
       <NavbarAfterLogin />
@@ -41,7 +60,11 @@ export default function AddExpense() {
           <b>
             <h4>Record New Expense</h4>
           </b>
-
+          {serverError || appError ? (
+            <ErrorDisplayMessage>
+              {serverError} {appError}
+            </ErrorDisplayMessage>
+          ) : null}{" "}
           <br />
           <input
             type="text"
@@ -53,7 +76,6 @@ export default function AddExpense() {
           />
           <div>{formik.touched.title && formik.errors.title}</div>
           <br />
-
           <input
             type="text"
             value={formik.values.description}
@@ -64,7 +86,6 @@ export default function AddExpense() {
           />
           <div>{formik.touched.description && formik.errors.description}</div>
           <br />
-
           <input
             type="number"
             value={formik.values.amount}
@@ -75,10 +96,13 @@ export default function AddExpense() {
           />
           <div>{formik.touched.amount && formik.errors.amount}</div>
           <br />
-
-          <button type="submit" class="btn">
-            Record Expense
-          </button>
+          {loading ? (
+            <DisabledButton />
+          ) : (
+            <button type="submit" class="btn">
+              Record Expense
+            </button>
+          )}
         </form>
       </div>
     </div>
