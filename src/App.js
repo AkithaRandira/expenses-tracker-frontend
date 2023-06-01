@@ -19,14 +19,13 @@ export default function App() {
     <Router>
       <div>
         <Route path="/" exact component={Home} />
-        <Route path="/update-user" exact component={UpdateUser} />
-        <Route path="/dashboard" exact component={DashBoard} />
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/sign-in" exact component={SignIn} />
+        <ProtectedRoute path="/update-user" exact component={UpdateUser} />
+        <ProtectedRoute path="/dashboard" exact component={DashBoard} />
         <ProtectedRoute path="/expense-list" exact component={ExpensesList} />
         <ProtectedRoute path="/income-list" exact component={IncomesList} />
         <ProtectedRoute path="/edit" exact component={EditContent} />
-
         <ProtectedRoute path="/add-income" exact component={AddIncome} />
         <ProtectedRoute path="/add-expense" exact component={AddExpense} />
         <Footer />
