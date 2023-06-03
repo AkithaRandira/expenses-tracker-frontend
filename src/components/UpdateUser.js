@@ -6,7 +6,8 @@ import { useFormik } from "formik";
 import { updateUserProfileAction } from "../redux/slices/users/usersSlices";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-
+import DisabledButton from "./DisabledButton";
+import ErrorDisplayMessage from "./ErrorDisplayMessage";
 //form validation
 const formSchema = Yup.object({
   email: Yup.string().required("Email is required"),
@@ -48,53 +49,65 @@ export default function UpdateUser() {
   });
 
   return (
-    <div>
-      <NavbarAfterLogin />
-      <form onSubmit={formik.handleSubmit} className="UpdateUser">
-        <b>
-          <h4>Update User Profile</h4>
-        </b>
-        <br />
-        <h5>Hi user, Do you want to update your profile ?</h5>
-        <br />
-        <br />
-        <div className="input-field" id="nameField">
-          <i className="fa-solid fa-user"></i>
-          <input
-            value={formik.values.firstname}
-            onChange={formik.handleChange("firstname")}
-            onBlur={formik.handleBlur("firstname")}
-            type="text"
-            placeholder="First Name"
-          />
-        </div>
-        <div>{formik.touched.firstname && formik.errors.firstname}</div>
+    <>
+      {userAppError || userServerError ? (
+        <ErrorDisplayMessage>
+          {userAppError} {userServerError}
+        </ErrorDisplayMessage>
+      ) : (
+        <div>
+          <NavbarAfterLogin />
+          <form onSubmit={formik.handleSubmit} className="UpdateUser">
+            <b>
+              <h4>Update User Profile</h4>
+            </b>
+            <br />
+            <h5>Hi user, Do you want to update your profile ?</h5>
+            <br />
+            <br />
+            <div className="input-field" id="nameField">
+              <i className="fa-solid fa-user"></i>
+              <input
+                value={formik.values.firstname}
+                onChange={formik.handleChange("firstname")}
+                onBlur={formik.handleBlur("firstname")}
+                type="text"
+                placeholder="First Name"
+              />
+            </div>
+            <div>{formik.touched.firstname && formik.errors.firstname}</div>
 
-        <div className="input-field">
-          <i className="fa-solid fa-user"></i>
-          <input
-            value={formik.values.lastname}
-            onChange={formik.handleChange("lastname")}
-            onBlur={formik.handleBlur("lastname")}
-            type="text"
-            placeholder="Last Name"
-          />
-        </div>
-        <div>{formik.touched.lastname && formik.errors.lastname}</div>
+            <div className="input-field">
+              <i className="fa-solid fa-user"></i>
+              <input
+                value={formik.values.lastname}
+                onChange={formik.handleChange("lastname")}
+                onBlur={formik.handleBlur("lastname")}
+                type="text"
+                placeholder="Last Name"
+              />
+            </div>
+            <div>{formik.touched.lastname && formik.errors.lastname}</div>
 
-        <div className="input-field">
-          <i className="fa-solid fa-envelope"></i>
-          <input
-            value={formik.values.email}
-            onChange={formik.handleChange("email")}
-            onBlur={formik.handleBlur("email")}
-            type="email"
-            placeholder="Email"
-          />
+            <div className="input-field">
+              <i className="fa-solid fa-envelope"></i>
+              <input
+                value={formik.values.email}
+                onChange={formik.handleChange("email")}
+                onBlur={formik.handleBlur("email")}
+                type="email"
+                placeholder="Email"
+              />
+            </div>
+            <div>{formik.touched.email && formik.errors.email}</div>
+            {userLoading ? (
+              <DisabledButton />
+            ) : (
+              <button type="submit"> Update </button>
+            )}
+          </form>
         </div>
-        <div>{formik.touched.email && formik.errors.email}</div>
-        <button type="submit"> Update </button>
-      </form>
-    </div>
+      )}
+    </>
   );
 }

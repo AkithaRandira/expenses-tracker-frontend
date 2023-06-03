@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userProfileAction } from "../redux/slices/users/usersSlices";
 import DateFormatter from "../utils/dateFormatter";
+import ErrorDisplayMessage from "./ErrorDisplayMessage";
+import Loading from "./Loading";
 import NavbarAfterLogin from "./NavbarAfterLogin";
 
 export default function Profile() {
@@ -17,32 +19,42 @@ export default function Profile() {
   const history = useHistory();
 
   return (
-    <div>
-      <NavbarAfterLogin />
-      <div>
-        <img></img>
+    <>
+      {loading ? (
+        <Loading />
+      ) : appError || serverError ? (
+        <ErrorDisplayMessage>
+          {appError} {serverError}
+        </ErrorDisplayMessage>
+      ) : (
         <div>
-          <span>
-            {profile?.firstname} {profile?.lastname}
-          </span>
-          <span>
-            {profile?.expenses?.length + profile?.incomes?.length} Records
-            Created
-          </span>
-          <p>{profile?.email}</p>
-          {profile?.createdAt && (
-            <p>Date Joined : {DateFormatter(profile?.createdAt)}</p>
-          )}
-          <button
-            type="button"
-            onClick={() => {
-              history.push({ pathname: "/update-user", state: profile });
-            }}
-          >
-            Edit Profile
-          </button>
+          <NavbarAfterLogin />
+          <div>
+            <img></img>
+            <div>
+              <span>
+                {profile?.firstname} {profile?.lastname}
+              </span>
+              <span>
+                {profile?.expenses?.length + profile?.incomes?.length} Records
+                Created
+              </span>
+              <p>{profile?.email}</p>
+              {profile?.createdAt && (
+                <p>Date Joined : {DateFormatter(profile?.createdAt)}</p>
+              )}
+              <button
+                type="button"
+                onClick={() => {
+                  history.push({ pathname: "/update-user", state: profile });
+                }}
+              >
+                Edit Profile
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
