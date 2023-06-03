@@ -37,7 +37,7 @@ export default function IncomesList() {
           <h6>Recent Incomes transactions</h6>
           <p>Below is the history of your income transactions records</p>
           <Link to="/add-expense" className="btn btn-primary">
-            New Incomes
+            New Income
           </Link>
 
           <table className="table">

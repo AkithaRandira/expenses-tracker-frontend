@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/Navigation/ProtectedRoute";
 import ExpensesList from "./components/ExpensesList";
 import EditContent from "./components/EditContent";
 import IncomesList from "./components/IncomesList";
+import Profile from "./components/Profile";
+import Logout from "./components/Logout";
 
 export default function App() {
   return (
@@ -22,12 +24,14 @@ export default function App() {
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/sign-in" exact component={SignIn} />
         <ProtectedRoute path="/update-user" exact component={UpdateUser} />
+        <ProtectedRoute path="/profile" exact component={Profile} />
         <ProtectedRoute path="/dashboard" exact component={DashBoard} />
         <ProtectedRoute path="/expense-list" exact component={ExpensesList} />
         <ProtectedRoute path="/income-list" exact component={IncomesList} />
         <ProtectedRoute path="/edit" exact component={EditContent} />
         <ProtectedRoute path="/add-income" exact component={AddIncome} />
         <ProtectedRoute path="/add-expense" exact component={AddExpense} />
+        <ProtectedRoute path="/logout" exact component={Logout} />
         <Footer />
       </div>
     </Router>

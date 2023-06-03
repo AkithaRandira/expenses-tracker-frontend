@@ -30,6 +30,22 @@ export const loginUserAction = createAsyncThunk(
   }
 );
 
+//logout action
+export const logoutUserAction = createAsyncThunk(
+  "user/logout",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    try {
+      //remove user from local storage
+      localStorage.removeItem("userInfo");
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 //register action
 export const registerUserAction = createAsyncThunk(
   "user/register",
@@ -45,6 +61,92 @@ export const registerUserAction = createAsyncThunk(
         config
       );
 
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//fetching profile
+export const userProfileAction = createAsyncThunk(
+  "user/profile",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    //get user token from store
+    const userToken = getState()?.users?.userAuth?.token;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+    try {
+      //making http call
+      const { data } = await axios.get(`${baseURL}/users/profile`, config);
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//fetching profile dashboard
+export const userProfileDashboardAction = createAsyncThunk(
+  "user/dashboard",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    //get user token from store
+    const userToken = getState()?.users?.userAuth?.token;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+    try {
+      //making http call
+      const { data } = await axios.get(`${baseURL}/users/profile`, config);
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+//update profile
+export const updateUserProfileAction = createAsyncThunk(
+  "user/update",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    //get user token from store
+    const userToken = getState()?.users?.userAuth?.token;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+    try {
+      //making http call
+      const { data } = await axios.put(
+        `${baseURL}/users/profile`,
+        {
+          firstname: payload?.firstname,
+          lastname: payload?.lastname,
+          email: payload?.email,
+        },
+        config
+      );
       return data;
     } catch (error) {
       if (!error?.response) {
@@ -112,6 +214,82 @@ const userSlices = createSlice({
       state.userLoading = false;
       state.userAppError = action?.payload?.msg;
       state.userServerError = action?.error?.msg;
+    });
+
+    //fetching profile
+    //handle pending state
+    builder.addCase(userProfileAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    //handle success state
+    builder.addCase(userProfileAction.fulfilled, (state, action) => {
+      state.profile = action?.payload;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    //handle rejected state
+    builder.addCase(userProfileAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload?.msg;
+      state.serverError = action?.error?.msg;
+    });
+
+    //fetching profile dashboard
+    //handle pending state
+    builder.addCase(userProfileDashboardAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    //handle success state
+    builder.addCase(userProfileDashboardAction.fulfilled, (state, action) => {
+      state.profile = action?.payload;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    //handle rejected state
+    builder.addCase(userProfileDashboardAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload?.msg;
+      state.serverError = action?.error?.msg;
+    });
+
+    //update profile
+    //handle pending state
+    builder.addCase(updateUserProfileAction.pending, (state, action) => {
+      state.loading = true;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    //handle success state
+    builder.addCase(updateUserProfileAction.fulfilled, (state, action) => {
+      state.userUpdate = action?.payload;
+      state.loading = false;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+
+    //handle rejected state
+    builder.addCase(updateUserProfileAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload?.msg;
+      state.serverError = action?.error?.msg;
+    });
+
+    //logout
+    //handle success state
+    builder.addCase(logoutUserAction.fulfilled, (state, action) => {
+      state.userAuth = undefined;
+      state.userLoading = false;
     });
   },
 });

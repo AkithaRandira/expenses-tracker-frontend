@@ -7,15 +7,30 @@ import Loading from "../components/Loading";
 import { fetchAccountStatsAction } from "../redux/slices/accountStatistics/accountStatSlices";
 import { GraphData } from "./GraphData";
 import currencyFormatter from "../utils/currencyFormatter";
+import { userProfileDashboardAction } from "../redux/slices/users/usersSlices";
+import calculateTransactions from "../utils/accountStatistics";
+import { useHistory } from "react-router-dom";
 
 export default function UpdateUser() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAccountStatsAction());
+    dispatch(userProfileDashboardAction());
   }, [dispatch]);
 
-  const account = useSelector((state) => state.account);
+  const history = useHistory();
+  const account = useSelector((state) => state?.account);
   const { loading, appError, serverError, accountDetails } = account;
+
+  const state = useSelector((state) => state?.users);
+  const { profile } = state;
+
+  //get income stats
+  const incomeStats =
+    profile?.incomes && calculateTransactions(profile?.incomes);
+
+  //get expense stats
+  const expenseStats =
+    profile?.expenses && calculateTransactions(profile?.expenses);
 
   return (
     <>
@@ -29,10 +44,10 @@ export default function UpdateUser() {
         <section>
           <div className="Content">
             <NavbarAfterLogin />
-            <button class="updatebtn">Edit profile</button>
+
             <GraphData
-              income={accountDetails?.incomeStats[0]?.totalIncome}
-              expense={accountDetails?.expenseStats[0]?.totalExpense}
+              income={incomeStats?.sumTotal}
+              expense={expenseStats?.sumTotal}
             />
             <div className="dashboard">
               <div className="DashboardItems1">
@@ -40,93 +55,50 @@ export default function UpdateUser() {
                 <div className="Container">
                   <br></br>
                   <span className="title">Total Expense</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.expenseStats[0]?.totalExpense
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", expenseStats?.sumTotal)}</h2>
                   <br></br>{" "}
                   <span className="title">Number of Transactions</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.expenseStats[0]?.totalRecordsExpense
-                    )}
-                  </h2>
+                  <h2>{profile?.expenses?.length}</h2>
                   <br></br> <span className="title">Minimum Transaction</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.expenseStats[0]?.minExpense
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", expenseStats?.min)}</h2>
                   <br></br> <span className="title">Maximum Transaction</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.expenseStats[0]?.maxExpense
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", expenseStats?.max)}</h2>
                   <br></br> <span className="title">Average</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.expenseStats[0]?.averageExpense
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", expenseStats?.average)}</h2>
                 </div>
                 <br></br>
-                <a type="button" class="button01" href="/expense-list">
-                  {" "}
-                  View Expenses history{" "}
-                </a>
+                <button
+                  type="button"
+                  class="button01"
+                  onClick={() => history.push("/expense-list")}
+                >
+                  View Expense history
+                </button>
               </div>
               <div className="DashboardItems2">
                 <span className="mainTitle">INCOME</span>
                 <div className="Container">
                   <br></br>
                   <span className="title">Total Income</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.incomeStats[0]?.totalIncome
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", incomeStats?.sumTotal)}</h2>
                   <br></br>{" "}
                   <span className="title">Number of Transactions</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.incomeStats[0]?.totalRecordsIncome
-                    )}
-                  </h2>
+                  <h2>{profile?.incomes?.length}</h2>
                   <br></br> <span className="title">Minimum Transaction</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.incomeStats[0]?.minIncome
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", incomeStats?.min)}</h2>
                   <br></br> <span className="title">Maximum Transaction</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.incomeStats[0]?.maxIncome
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", incomeStats?.max)}</h2>
                   <br></br> <span className="title">Average</span>
-                  <h2>
-                    {currencyFormatter(
-                      "usd",
-                      accountDetails?.incomeStats[0]?.averageIncome
-                    )}
-                  </h2>
+                  <h2>{currencyFormatter("usd", incomeStats?.average)}</h2>
                 </div>
                 <br></br>
-                <a type="button" class="button02" href="/income-list">
+                <button
+                  type="button"
+                  class="button02"
+                  onClick={() => history.push("/income-list")}
+                >
                   View Income history
-                </a>
+                </button>
               </div>
             </div>
           </div>
