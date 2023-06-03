@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { userProfileAction } from "../redux/slices/users/usersSlices";
 import DateFormatter from "../utils/dateFormatter";
 import NavbarAfterLogin from "./NavbarAfterLogin";
@@ -11,7 +12,9 @@ export default function Profile() {
     dispatch(userProfileAction());
   }, [dispatch]);
   const state = useSelector((state) => state?.users);
-  const { loading, appError, serverError, profile } = state;
+  const { loading, appError, serverError, userAuth, profile } = state;
+
+  const history = useHistory();
 
   return (
     <div>
@@ -30,7 +33,14 @@ export default function Profile() {
           {profile?.createdAt && (
             <p>Date Joined : {DateFormatter(profile?.createdAt)}</p>
           )}
-          <button type="button">Edit Profile</button>
+          <button
+            type="button"
+            onClick={() => {
+              history.push({ pathname: "/update-user", state: profile });
+            }}
+          >
+            Edit Profile
+          </button>
         </div>
       </div>
     </div>

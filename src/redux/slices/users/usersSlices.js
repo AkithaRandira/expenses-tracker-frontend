@@ -139,7 +139,7 @@ export const updateUserProfileAction = createAsyncThunk(
     try {
       //making http call
       const { data } = await axios.put(
-        `${baseURL}/users/profile`,
+        `${baseURL}/users/update`,
         {
           firstname: payload?.firstname,
           lastname: payload?.lastname,
