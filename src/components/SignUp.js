@@ -8,7 +8,6 @@ import DisabledButton from "./DisabledButton";
 import { useHistory } from "react-router-dom";
 import Navbar from "./Navbar";
 
-
 //form validation
 const formSchema = Yup.object({
   email: Yup.string().required("Email is required"),
@@ -25,7 +24,7 @@ export default function SignUp() {
   const user = useSelector((state) => state?.users);
 
   //destructure the user
-  const { userAppError, userServerError, userLoading, userAuth } = user;
+  const { userAppError, userServerError, userLoading, isRegistered } = user;
 
   //dispatch
   const dispatch = useDispatch();
@@ -46,10 +45,10 @@ export default function SignUp() {
 
   //redirect user
   useEffect(() => {
-    if (userAuth) {
+    if (isRegistered) {
       return history.push("/sign-in");
     }
-  }, [userAuth]);
+  }, [isRegistered]);
 
   return (
     <div className="signin">

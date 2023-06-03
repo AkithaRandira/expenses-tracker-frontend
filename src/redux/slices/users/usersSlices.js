@@ -203,7 +203,7 @@ const userSlices = createSlice({
 
     //handle success state
     builder.addCase(registerUserAction.fulfilled, (state, action) => {
-      state.userAuth = action?.payload;
+      state.isRegistered = true;
       state.userLoading = false;
       state.userAppError = undefined;
       state.userServerError = undefined;
