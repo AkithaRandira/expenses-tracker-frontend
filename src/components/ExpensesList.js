@@ -1,38 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllExpenseAction } from "../redux/slices/expenses/expensesSlices";
+
 import { Link } from "react-router-dom";
 import NavbarAfterLogin from "./NavbarAfterLogin";
 import ContentDetails from "./ContentDetails";
 import AppPagination from "./AppPagination";
 import Loading from "./Loading";
 import ErrorDisplayMessage from "./ErrorDisplayMessage";
+import { userProfileAction } from "../redux/slices/users/usersSlices";
 
 export default function ExpensesList() {
   //dispatch
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-
-  //get all expenses
-  const allExpenses = useSelector((state) => state?.expenses);
-  const { loading, appError, serverError, expensesList } = allExpenses;
 
   useEffect(() => {
-    dispatch(fetchAllExpenseAction(+page));
-  }, [dispatch, page, setPage]);
+    dispatch(userProfileAction());
+  }, [dispatch]);
+
+  // state
+  const state = useSelector((state) => state?.users);
+  const { loading, appError, serverError, profile } = state;
 
   return (
     <div>
+      <NavbarAfterLogin />
+
       {loading ? (
         <Loading />
       ) : appError || serverError ? (
         <ErrorDisplayMessage>
           {serverError} {appError}
         </ErrorDisplayMessage>
+      ) : profile?.expenses?.length <= 0 ? (
+        <h2>No expense found</h2>
       ) : (
         <div>
-          <NavbarAfterLogin />
-
           <h6>Recent Expense transactions</h6>
           <p>Below is the history of your expense transactions records</p>
           <Link to="/add-expense" className="btn btn-primary">
@@ -42,7 +44,6 @@ export default function ExpensesList() {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col">Withdrawed By</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
                 <th scope="col">Amount</th>
@@ -55,20 +56,17 @@ export default function ExpensesList() {
                 <h1>loading</h1>
               ) : appError || serverError ? (
                 <div>Error</div>
-              ) : expensesList?.docs?.length <= 0 ? (
+              ) : profile?.expenses?.length <= 0 ? (
                 <h1>No Expenses Found</h1>
               ) : (
-                expensesList?.docs?.map((expense) => {
-                  return <ContentDetails key={expense?._id} {...expense} />;
-                })
+                profile?.expenses
+                  ?.map((expense) => {
+                    return <ContentDetails key={expense?._id} {...expense} />;
+                  })
+                  ?.reverse()
               )}
             </tbody>
           </table>
-
-          <AppPagination
-            setPage={setPage}
-            pageNumber={expensesList?.totalPages}
-          />
         </div>
       )}
     </div>

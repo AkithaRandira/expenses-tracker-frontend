@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddExpenseStyles.css";
 import NavbarAfterLogin from "./NavbarAfterLogin";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,8 @@ export default function EditContent() {
   const location = useLocation();
   const { item } = location.state;
 
+  const history = useHistory();
+  
   //dispatch
   const dispatch = useDispatch();
 
@@ -36,10 +38,15 @@ export default function EditContent() {
         ...values,
         id: item?._id,
       };
-      item?.type === "expense"
+      item?.type === "Expense"
         ? dispatch(updateExpenseAction(data))
         : dispatch(updateIncomeAction(data));
+
+      item?.type === "Expense"
+        ? history.push("/expense-list")
+        : history.push("/income-list");
     },
+
     validationSchema: formSchema,
   });
 

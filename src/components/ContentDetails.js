@@ -8,9 +8,7 @@ export default function ContentDetails(item) {
   return (
     <>
       <tr>
-        <th>
-          {item?.user?.firstname} {item?.user?.lastname}
-        </th>
+       
         <td>{item?.title}</td>
         <td>{item?.description}</td>
         <td>{currencyFormatter("usd", item?.amount)}</td>
