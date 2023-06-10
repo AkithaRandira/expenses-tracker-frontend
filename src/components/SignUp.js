@@ -66,6 +66,7 @@ export default function SignUp() {
               ) : null}
               <div className="input-field" id="nameField">
                 <i className="fa-solid fa-user"></i>
+                <div>
                 <input
                   value={formik.values.firstname}
                   onChange={formik.handleChange("firstname")}
@@ -74,10 +75,12 @@ export default function SignUp() {
                   placeholder="First Name"
                 />
               </div>
-              <div>{formik.touched.firstname && formik.errors.firstname}</div>
+              <div className="Valid1">{formik.touched.firstname && formik.errors.firstname}</div>
+              </div>
 
               <div className="input-field">
                 <i className="fa-solid fa-user"></i>
+                <div>
                 <input
                   value={formik.values.lastname}
                   onChange={formik.handleChange("lastname")}
@@ -86,10 +89,12 @@ export default function SignUp() {
                   placeholder="Last Name"
                 />
               </div>
-              <div>{formik.touched.lastname && formik.errors.lastname}</div>
+              <div className="Valid1">{formik.touched.lastname && formik.errors.lastname}</div>
+              </div>
 
               <div className="input-field">
                 <i className="fa-solid fa-envelope"></i>
+                <div>
                 <input
                   value={formik.values.email}
                   onChange={formik.handleChange("email")}
@@ -98,10 +103,12 @@ export default function SignUp() {
                   placeholder="Email"
                 />
               </div>
-              <div>{formik.touched.email && formik.errors.email}</div>
+              <div className="Valid1">{formik.touched.email && formik.errors.email}</div>
+              </div>
 
               <div className="input-field">
                 <i className="fa-solid fa-lock"></i>
+                <div>
                 <input
                   value={formik.values.password}
                   onChange={formik.handleChange("password")}
@@ -111,7 +118,8 @@ export default function SignUp() {
                   minLength={8}
                 />
               </div>
-              <div>{formik.touched.password && formik.errors.password}</div>
+              <div className="Valid1">{formik.touched.password && formik.errors.password}</div>
+              </div>
             </div>
 
             <div className="btn-field">

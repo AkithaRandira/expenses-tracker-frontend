@@ -75,7 +75,7 @@ export default function UpdateUser() {
                 placeholder="First Name"
               />
             </div>
-            <div>{formik.touched.firstname && formik.errors.firstname}</div>
+            <div className="error-msg">{formik.touched.firstname && formik.errors.firstname}</div>
 
             <div className="input-field">
               <i className="fa-solid fa-user"></i>
@@ -87,7 +87,7 @@ export default function UpdateUser() {
                 placeholder="Last Name"
               />
             </div>
-            <div>{formik.touched.lastname && formik.errors.lastname}</div>
+            <div className="error-msg">{formik.touched.lastname && formik.errors.lastname}</div>
 
             <div className="input-field">
               <i className="fa-solid fa-envelope"></i>
@@ -99,11 +99,11 @@ export default function UpdateUser() {
                 placeholder="Email"
               />
             </div>
-            <div>{formik.touched.email && formik.errors.email}</div>
+            <div className="error-msg">{formik.touched.email && formik.errors.email}</div><br/>
             {userLoading ? (
               <DisabledButton />
             ) : (
-              <button type="submit"> Update </button>
+              <button className="update-btn" type="submit"> Update </button>
             )}
           </form>
         </div>

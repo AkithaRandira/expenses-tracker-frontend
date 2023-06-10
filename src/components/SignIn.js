@@ -64,6 +64,7 @@ export default function SignIn() {
               ) : null}
               <div className="input-field">
                 <i className="fa-solid fa-envelope"></i>
+                <div>
                 <input
                   value={formik.values.email}
                   onChange={formik.handleChange("email")}
@@ -71,11 +72,14 @@ export default function SignIn() {
                   type="email"
                   placeholder="Email"
                 />
+                
               </div>
-              <div>{formik.touched.email && formik.errors.email}</div>
+              <div className="valid2">{formik.touched.email && formik.errors.email}</div>
+              </div>
 
               <div className="input-field">
                 <i className="fa-solid fa-lock"></i>
+                <div>
                 <input
                   value={formik.values.password}
                   onChange={formik.handleChange("password")}
@@ -83,8 +87,10 @@ export default function SignIn() {
                   type="password"
                   placeholder="Password"
                 />
+                
               </div>
-              <div>{formik.touched.password && formik.errors.password}</div>
+              <div className="valid2">{formik.touched.password && formik.errors.password}</div>
+              </div>
             </div>
 
             <div className="btn-field">

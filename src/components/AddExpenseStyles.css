@@ -17,12 +17,15 @@
 .title {
   width: 250px;
   height: 30px;
+  background-color: #ffffff;
 }
 
 .btn {
   background-color: #287dbe;
   color: #ffffff;
   border-radius: 5px 5px 5px 5px;
+  border: none;
+  font-size: medium;
   width: 150px;
   height: 30px;
   cursor: pointer;
@@ -34,6 +37,7 @@
 .btn:hover {
   background-color: rgb(102, 127, 128);
 }
+<<<<<<< HEAD
 
 .input {
   background-color: white;
@@ -112,4 +116,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+=======
+.error-msg{
+  color: rgb(226, 4, 4);
+>>>>>>> 4c8fb0bb00f7a850ecbbf4372cb5a69d244e118b
 }
