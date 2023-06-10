@@ -17,12 +17,15 @@
 .title {
   width: 250px;
   height: 30px;
+  background-color: #ffffff;
 }
 
 .btn {
   background-color: #287dbe;
   color: #ffffff;
   border-radius: 5px 5px 5px 5px;
+  border: none;
+  font-size: medium;
   width: 150px;
   height: 30px;
   cursor: pointer;
@@ -32,4 +35,7 @@
 }
 .btn:hover {
   background-color: #0d353f;
+}
+.error-msg{
+  color: rgb(226, 4, 4);
 }

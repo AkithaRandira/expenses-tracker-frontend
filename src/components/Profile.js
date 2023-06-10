@@ -6,6 +6,9 @@ import DateFormatter from "../utils/dateFormatter";
 import ErrorDisplayMessage from "./ErrorDisplayMessage";
 import Loading from "./Loading";
 import NavbarAfterLogin from "./NavbarAfterLogin";
+import "./Profile.css";
+import image from "./profile-pic.jpg";
+        
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -29,21 +32,23 @@ export default function Profile() {
       ) : (
         <div>
           <NavbarAfterLogin />
-          <div>
+          <div className="container">
             <img></img>
-            <div>
+            <div className="profile-box">
+            <img className="profile-pic" src={image} alt="My Image" /><br/>
+            
               <span>
-                {profile?.firstname} {profile?.lastname}
-              </span>
-              <span>
+                {profile?.firstname} {profile?.lastname} 
+              </span><br/>
+              <br/><span>
                 {profile?.expenses?.length + profile?.incomes?.length} Records
                 Created
-              </span>
-              <p>{profile?.email}</p>
+              </span><br/>
+              <br/> <p>{profile?.email}</p><br/>
               {profile?.createdAt && (
                 <p>Date Joined : {DateFormatter(profile?.createdAt)}</p>
-              )}
-              <button
+              )}<br/>
+              <button className="edit-btn"
                 type="button"
                 onClick={() => {
                   history.push({ pathname: "/update-user", state: profile });
