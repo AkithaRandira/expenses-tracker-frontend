@@ -2,6 +2,8 @@ import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
+
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function GraphData({ income, expense }) {
@@ -33,18 +35,18 @@ export function GraphData({ income, expense }) {
   };
   return (
     <div
-      style={{
-        display: "flex",
-        height: "20%",
-        width: "20%",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        marginTop: "40px",
-      }}
+      // style={{
+      //   display: "flex",
+      //   height: "20%",
+      //   width: "20%",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      //   flexDirection: "column",
+      //   marginTop: "40px",
+      // }}
     >
-      <div>
-        <h3>Transactions</h3>
+      <div className="headingDashboard">
+        <h1>Transactions</h1>
       </div>
       <Pie data={data} />
     </div>
