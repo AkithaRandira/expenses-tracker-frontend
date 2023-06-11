@@ -3,8 +3,14 @@ footer {
   font-weight: 400;
   background-color: #000;
   text-align: center;
-  padding: 20px;
+  padding:5px;
   color: aliceblue;
+
+  /* footer postion is fixed from this following keyboard */
+  /* position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; */
 }
 footer h2 {
   padding: 20px;

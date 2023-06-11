@@ -1,5 +1,6 @@
 import "./DashBoard.css";
-import NavbarAfterLogin from "./NavbarAfterLogin";
+//  import NavbarAfterLogin from "./NavbarAfterLogin";
+import NavBarDashboard from "./NavBarDashboard";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorDisplayMessage from "../components/ErrorDisplayMessage";
@@ -43,62 +44,78 @@ export default function UpdateUser() {
       ) : (
         <section>
           <div className="Content">
-            <NavbarAfterLogin />
+            <NavBarDashboard />
 
-            <GraphData
-              income={incomeStats?.sumTotal}
-              expense={expenseStats?.sumTotal}
-            />
-            <div className="dashboard">
-              <div className="DashboardItems1">
-                <span className="mainTitle">EXPENSES</span>
-                <div className="Container">
-                  <br></br>
-                  <span className="title">Total Expense</span>
-                  <h2>{currencyFormatter("usd", expenseStats?.sumTotal)}</h2>
-                  <br></br>{" "}
-                  <span className="title">Number of Transactions</span>
-                  <h2>{profile?.expenses?.length}</h2>
-                  <br></br> <span className="title">Minimum Transaction</span>
-                  <h2>{currencyFormatter("usd", expenseStats?.min)}</h2>
-                  <br></br> <span className="title">Maximum Transaction</span>
-                  <h2>{currencyFormatter("usd", expenseStats?.max)}</h2>
-                  <br></br> <span className="title">Average</span>
-                  <h2>{currencyFormatter("usd", expenseStats?.average)}</h2>
-                </div>
-                <br></br>
-                <button
-                  type="button"
-                  class="button01"
-                  onClick={() => history.push("/expense-list")}
-                >
-                  View Expense history
-                </button>
+            <div class="grid-container">
+              <div class="grid-item">
+                <GraphData
+                  income={incomeStats?.sumTotal}
+                  expense={expenseStats?.sumTotal}
+                />
               </div>
-              <div className="DashboardItems2">
-                <span className="mainTitle">INCOME</span>
-                <div className="Container">
+              <div class="grid-item">
+                <div className="DashboardItems1">
+                  <span className="mainTitle">EXPENSES</span>
+                  <div className="Container">
+                    <br></br>
+                    <span className="titles">Total Expense:</span>
+                    <h4>{currencyFormatter("usd", expenseStats?.sumTotal)}</h4>
+                    <br></br>{" "}
+                    <span className="titles">Number of Transactions:</span>
+                    <h4>{profile?.expenses?.length}</h4>
+                    <br></br>{" "}
+                    <span className="titles">Minimum Transaction:</span>
+                    <h4>{currencyFormatter("usd", expenseStats?.min)}</h4>
+                    <br></br>{" "}
+                    <span className="titles">Maximum Transaction:</span>
+                    <h4>{currencyFormatter("usd", expenseStats?.max)}</h4>
+                    <br></br> <span className="titles">Average:</span>
+                    <h4>{currencyFormatter("usd", expenseStats?.average)}</h4>
+                  </div>
                   <br></br>
-                  <span className="title">Total Income</span>
-                  <h2>{currencyFormatter("usd", incomeStats?.sumTotal)}</h2>
-                  <br></br>{" "}
-                  <span className="title">Number of Transactions</span>
-                  <h2>{profile?.incomes?.length}</h2>
-                  <br></br> <span className="title">Minimum Transaction</span>
-                  <h2>{currencyFormatter("usd", incomeStats?.min)}</h2>
-                  <br></br> <span className="title">Maximum Transaction</span>
-                  <h2>{currencyFormatter("usd", incomeStats?.max)}</h2>
-                  <br></br> <span className="title">Average</span>
-                  <h2>{currencyFormatter("usd", incomeStats?.average)}</h2>
+                  <button
+                    type="button"
+                    class="button01"
+                    onClick={() => history.push("/expense-list")}
+                  >
+                    View Expense history
+                  </button>
                 </div>
-                <br></br>
-                <button
-                  type="button"
-                  class="button02"
-                  onClick={() => history.push("/income-list")}
-                >
-                  View Income history
-                </button>
+              </div>
+              <div class="grid-item">
+                <div className="DashboardItems2">
+                  <span className="mainTitle">INCOME</span>
+                  <div className="Container">
+                    <br></br>
+                    <span className="titles">Total Income:</span>
+                    <h4>{currencyFormatter("usd", incomeStats?.sumTotal)}</h4>
+                    <br></br>{" "}
+                    <span className="titles">Number of Transactions:</span>
+                    <h4>{profile?.incomes?.length}</h4>
+                    <br></br>{" "}
+                    <span className="titles">Minimum Transaction:</span>
+                    <h4>
+                      {currencyFormatter(
+                        "usd",
+                        incomeStats?.min == Infinity ? 0 : incomeStats?.min
+                      )}
+                      {/* if infinty is equals then its 0 or else the current value*/}
+                    </h4>
+                    <br></br>{" "}
+                    <span className="titles">Maximum Transaction:</span>
+                    <h4>{currencyFormatter("usd", incomeStats?.max)}</h4>
+                    <br></br> <span className="titles">Average:</span>
+                    <h4>{currencyFormatter("usd", incomeStats?.average)}</h4>
+                  </div>
+                  <br></br>
+                  <button
+                    type="button"
+                    class="button02"
+                    onClick={() => history.push("/income-list")}
+                  >
+                    View Income history
+                  </button>
+                </div>
               </div>
             </div>
           </div>

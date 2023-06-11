@@ -67,15 +67,16 @@ export default function EditContent() {
           <b>
             <h4>
               {item?.type === "Income" ? (
-                <h2>Update Income</h2>
+                <h5 class="update">Update Income</h5>
               ) : (
-                <h2>Update Expense</h2>
+                <h5 class="update">Update Expense</h5>
               )}
             </h4>
           </b>
 
           <br />
-          <input
+          <div>
+          <input 
             value={formik.values.title}
             onChange={formik.handleChange("title")}
             onBlur={formik.handleBlur("title")}
@@ -83,9 +84,11 @@ export default function EditContent() {
             class="title"
             placeholder="Enter Title"
           />
-
-          <div>{formik.touched.title && formik.errors.title}</div>
-
+          <div className="Validation">{formik.touched.title && formik.errors.title}</div>
+         </div>
+         <br></br>
+         
+          <div>
           <input
             value={formik.values.description}
             onChange={formik.handleChange("description")}
@@ -94,9 +97,11 @@ export default function EditContent() {
             class="description"
             placeholder="Enter Description"
           />
-          <div>{formik.touched.description && formik.errors.description}</div>
+          <div className="Validation">{formik.touched.description && formik.errors.description}</div>
+          </div>
+          <br></br>
 
-          <input
+         <input
             value={formik.values.amount}
             onChange={formik.handleChange("amount")}
             onBlur={formik.handleBlur("amount")}
@@ -104,14 +109,14 @@ export default function EditContent() {
             class="amount"
             placeholder="Enter Amount"
           />
-          <div>{formik.touched.amount && formik.errors.amount}</div>
+          <div className="Validation">{formik.touched.amount && formik.errors.amount}</div>
           <br />
 
           <div className="btn-field">
             {loading ? (
               <DisabledButton />
             ) : (
-              <button type="submit" id="btn">
+              <button className="buttonupdate1" type="submit" id="buttonupdate">
                 Update
               </button>
             )}

@@ -1,5 +1,5 @@
 .box {
-  padding-top: 100px;
+  /* padding-top:40px; */
   padding-bottom: 100px;
 }
 .expensebox {
@@ -31,11 +31,97 @@
   cursor: pointer;
   transition: transform 0.45ease;
   text-decoration: none;
+  border:none;
   box-shadow: 0 14px 28px rgb(0, 0, 0, 0.25), 0 10px 10px rgb(0, 0, 0, 0.22);
 }
 .btn:hover {
-  background-color: #0d353f;
+  background-color: rgb(102, 127, 128);
 }
+<<<<<<< HEAD
+
+.input {
+  background-color: white;
+}
+
+/*styling for update expense*/
+.box {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  align-items: center;
+}
+.incomebox {
+  align-items: center;
+  width: 400px;
+  background-color: #90bacd;
+  margin: auto;
+  color: #050505;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  border-radius: 15px 15px 15px 15px;
+  padding-bottom: 60px;
+  padding-top: 30px;
+  box-shadow: 0 14px 28px rgb(0, 0, 0, 0.25), 0 10px 10px rgb(0, 0, 0, 0.22);
+}
+
+.title {
+  width: 250px;
+  height: 30px;
+  background-color: #ffffff;
+  font-size: medium;
+
+}
+.description {
+  width: 250px;
+  height: 30px;
+  background-color: #ffffff;
+  font-size: medium;
+
+
+}
+.amount{
+  width: 250px;
+  height: 30px;
+  background-color: #ffffff;
+  font-size: medium;
+
+}
+.update{
+  font-size: medium;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+ #buttonupdate{
+  background-color: #287dbe;
+  color: #ffffff;
+  align-items: center;
+  border-radius: 5px 5px 5px 5px;
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.45ease;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgb(0, 0, 0, 0.25), 0 10px 10px rgb(0, 0, 0, 0.22);
+
+}
+#buttonupdate:hover {
+  background-color: rgb(102, 127, 128);
+}
+.Validation{
+  color:rgb(184, 35, 35);
+  font-weight: 300;
+}
+
+.btn-field{ /*style for the update button*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+=======
 .error-msg{
+<<<<<<< HEAD
   color: rgb(212, 54, 54);;
+=======
+  color: rgb(226, 4, 4);
+>>>>>>> 4c8fb0bb00f7a850ecbbf4372cb5a69d244e118b
+>>>>>>> 3f41d318e124c6cf89d5f89e7ce7475cdc4d4d24
 }
