@@ -1,8 +1,9 @@
-.headingDashboard h1{
-     font-size: 40px;
-     margin: 0;
-     color: rgb(2, 10, 10);
-     
-
-
+.headingDashboard h1 {
+  font-size: 40px;
+  margin: 0;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.headingDashboard {
+  padding-bottom: 15px;
 }

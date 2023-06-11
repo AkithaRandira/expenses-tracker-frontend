@@ -1,14 +1,13 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
-
-
+import "./GraphData.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function GraphData({ income, expense }) {
   const data = {
-    labels: ["Expense", "Income"],
+    labels: ["Income", "Expense"],
     datasets: [
       {
         label: "# Expense",
@@ -35,20 +34,20 @@ export function GraphData({ income, expense }) {
   };
   return (
     <div
-      // style={{
-      //   display: "flex",
-      //   height: "20%",
-      //   width: "20%",
-      //   justifyContent: "center",
-      //   alignItems: "center",
-      //   flexDirection: "column",
-      //   marginTop: "40px",
-      // }}
+    // style={{
+    //   display: "flex",
+    //   height: "20%",
+    //   width: "20%",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   flexDirection: "column",
+    //   marginTop: "40px",
+    // }}
     >
       <div className="headingDashboard">
         <h1>Transactions</h1>
+        <Pie data={data} />
       </div>
-      <Pie data={data} />
     </div>
   );
 }
