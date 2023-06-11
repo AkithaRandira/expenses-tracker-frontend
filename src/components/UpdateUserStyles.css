@@ -1,11 +1,11 @@
 .UpdateUser {
-  width: 600px;
+  width: 400px;
   background-color: #90bacd;
   color: rgb(0, 0, 0);
   padding: 50px;
   text-align: center;
   border-radius: 20px;
-  margin-left: 350px;
+  margin-left: 500px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -35,5 +35,5 @@
 }
 
 .error-msg{
-  color: rgb(226, 4, 4);
+  color:  rgb(211, 81, 81);
 }

@@ -88,6 +88,7 @@ export default function UpdateUser() {
               />
             </div>
             <div className="error-msg">{formik.touched.lastname && formik.errors.lastname}</div>
+            
 
             <div className="input-field">
               <i className="fa-solid fa-envelope"></i>
@@ -100,6 +101,7 @@ export default function UpdateUser() {
               />
             </div>
             <div className="error-msg">{formik.touched.email && formik.errors.email}</div><br/>
+            
             {userLoading ? (
               <DisabledButton />
             ) : (
