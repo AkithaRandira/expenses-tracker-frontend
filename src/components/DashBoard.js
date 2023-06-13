@@ -33,6 +33,22 @@ export default function UpdateUser() {
   const expenseStats =
     profile?.expenses && calculateTransactions(profile?.expenses);
 
+  function checkInfinity(value) {
+    if (!isFinite(value)) {
+      return currencyFormatter("usd", 0);
+    } else {
+      return currencyFormatter("usd", value);
+    }
+  }
+
+  function checkNaN(value) {//check nan function checks the avg is a 0
+    if (isNaN(value)) {
+      return currencyFormatter("usd", 0);
+    } else {
+      return currencyFormatter("usd", value);// pass the average value if the user enters some income to the app
+    }
+  }
+
   return (
     <>
       {loading ? (
@@ -54,6 +70,7 @@ export default function UpdateUser() {
                 />
               </div>
               <div class="grid-item">
+                {/*expense box */}
                 <div className="DashboardItems1">
                   <span className="mainTitle">EXPENSES</span>
                   <div className="Container">
@@ -65,12 +82,26 @@ export default function UpdateUser() {
                     <h4>{profile?.expenses?.length}</h4>
                     <br></br>{" "}
                     <span className="titles">Minimum Transaction:</span>
-                    <h4>{currencyFormatter("usd", expenseStats?.min)}</h4>
+                    <h4>
+                      {currencyFormatter(
+                        "usd",
+                        expenseStats?.min == Infinity ? 0 : expenseStats?.min
+                      )}
+                    </h4>
                     <br></br>{" "}
                     <span className="titles">Maximum Transaction:</span>
-                    <h4>{currencyFormatter("usd", expenseStats?.max)}</h4>
+                    <h4>
+                      {/* {currencyFormatter(
+                        "usd",
+                        expenseStats?.max == Infinity ? 0 : expenseStats?.max
+                      )} */}
+                      {checkInfinity(expenseStats?.max)}
+                    </h4>
                     <br></br> <span className="titles">Average:</span>
-                    <h4>{currencyFormatter("usd", expenseStats?.average)}</h4>
+                    <h4>
+                      {/* {currencyFormatter("usd", expenseStats?.average)} */}
+                      {checkNaN(expenseStats?.average)}
+                    </h4>
                   </div>
                   <br></br>
                   <button
@@ -83,6 +114,8 @@ export default function UpdateUser() {
                 </div>
               </div>
               <div class="grid-item">
+                {" "}
+                {/*income box */}
                 <div className="DashboardItems2">
                   <span className="mainTitle">INCOME</span>
                   <div className="Container">
@@ -103,9 +136,15 @@ export default function UpdateUser() {
                     </h4>
                     <br></br>{" "}
                     <span className="titles">Maximum Transaction:</span>
-                    <h4>{currencyFormatter("usd", incomeStats?.max)}</h4>
+                    <h4>
+                      {/* {currencyFormatter("usd", incomeStats?.max)} */}
+                      {checkInfinity(incomeStats?.min)} {/* function nanme is checkinfinty */}
+                      </h4>
                     <br></br> <span className="titles">Average:</span>
-                    <h4>{currencyFormatter("usd", incomeStats?.average)}</h4>
+                    <h4>
+                      {/* {currencyFormatter("usd", incomeStats?.average)} */}
+                      {checkNaN(incomeStats?.average)}
+                    </h4>
                   </div>
                   <br></br>
                   <button

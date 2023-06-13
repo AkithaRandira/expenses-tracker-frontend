@@ -81,3 +81,14 @@ thead th {
   font-style: oblique;
   color:#00A572;
  } 
+
+ .page1{
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  margin: 0;
+ }
+
+ /* .heading2{
+  text-align: center;
+ } */

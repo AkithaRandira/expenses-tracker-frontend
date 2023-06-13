@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./AddExpenseStyles.css";
 import NavbarAfterLogin from "./NavbarAfterLogin";
+// import footer from "./Footer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { createExpenseAction } from "../redux/slices/expenses/expensesSlices";
 import { useLocation, useHistory } from "react-router-dom";
@@ -106,5 +107,7 @@ export default function AddExpense() {
         </form>
       </div>
     </div>
+   
   );
+  // <Footer />
 }

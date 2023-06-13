@@ -15,7 +15,7 @@
   width: 50%;
   justify-content: center;
   align-items: center;
-  margin: 50px 0;
+  margin: 30px 0;
   
 }
 
@@ -36,7 +36,7 @@
   text-align: justify; */
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: auto;
   justify-content: center;
   /* align-items: center; */
   /* margin: 50px 0; */
@@ -46,10 +46,7 @@
 .DashboardItems1 {
   /* margin: 0px 40px; */
   padding-top: 10px;
-  width: 50%;
-
-  height: auto;
-  padding-right: 40px;
+  padding-right: 30px;
   padding-left: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
@@ -57,7 +54,8 @@
   -webkit-box-shadow: 0px 0px 7px 2px #000000;
   box-shadow: 0px 0px 7px 2px #000000;
   /* padding:200px; */
-
+   /* width: 50%; */
+  /* height: auto; */
   margin: 15px;
   box-sizing: border-box;
   float: left;
@@ -65,14 +63,14 @@
 .DashboardItems2 {
   /* margin: 0px 40px; */
   padding-top: 10px;
-  padding-right: 40px;
+  padding-right: 30px;
   padding-left: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   background-color: #acd7df;
   -webkit-box-shadow: 0px 0px 7px 2px #000000;
   box-shadow: 0px 0px 7px 2px #000000;
-  width: 50%;
+  /* width: 60%; */
   margin: 15px;
   box-sizing: border-box;
   float: left;
@@ -111,7 +109,7 @@
   background-color: #287dbe;
   border: none;
   border-radius: 5px 5px 5px 5px;
-  width: 200px;
+  width: 250px;
   height: 30px;
   cursor: pointer;
   align-items: center;
@@ -121,7 +119,7 @@
   background-color: #287dbe;
   border: none;
   border-radius: 5px 5px 5px 5px;
-  width: 200px;
+  width: 250px;
   height: 30px;
   cursor: pointer;
   align-items: center;
@@ -151,7 +149,7 @@
     auto-fit,
     minmax(300px, 1fr)
   ); /* this makes the page mobile responisve*/
-  gap: 20px;
+  gap: 10px;
 }
 
 .grid-item {

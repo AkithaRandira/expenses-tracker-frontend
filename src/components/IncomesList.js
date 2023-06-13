@@ -26,8 +26,8 @@ export default function IncomesList() {
   return (
     <div>
       <NavbarAfterLogin />
-
-      {loading ? (
+      <div className="page1">
+        {loading ? (
         <Loading />
       ) : appError || serverError ? (
         <ErrorDisplayMessage>
@@ -74,6 +74,7 @@ export default function IncomesList() {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

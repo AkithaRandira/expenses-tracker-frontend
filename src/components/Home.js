@@ -1,5 +1,6 @@
 import "./HomeStyles.css";
 import Navbar from "./Navbar";
+import image from "../images/1.png";
 
 function Home() {
   return (
@@ -7,7 +8,9 @@ function Home() {
       <Navbar />
       <div className="home">
         <div className="section-container">
-          <div className="columns image">&nbsp;</div>
+          <div className="columns image">
+            {/* <img src={image} alt="My Image" /> */}
+          </div>
           <div className="columns content">
             <div className="content-container">
               <h2>Saverly</h2>

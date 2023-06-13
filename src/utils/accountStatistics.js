@@ -3,6 +3,7 @@
 const calculateTransactions = (arr) => {
   const transactionArray = arr?.map((item) => item?.amount);
 
+  const totalRows = transactionArray?.length || 0;// takes the total records that user has entered
   //sum of all transactions
   const sumTotal = arr
     ?.map((item) => item?.amount)
@@ -11,7 +12,7 @@ const calculateTransactions = (arr) => {
     }, 0);
 
   //average of all transactions
-  const average = sumTotal / 2;
+  const average = sumTotal / totalRows; 
 
   //minimum transaction
   const min = Math.min(...transactionArray);

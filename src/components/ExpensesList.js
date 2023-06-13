@@ -24,7 +24,7 @@ export default function ExpensesList() {
   return (
     <div>
       <NavbarAfterLogin />
-      <div>
+      <div className="page1">
         {loading ? (
           <Loading />
         ) : appError || serverError ? (

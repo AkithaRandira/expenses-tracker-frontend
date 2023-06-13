@@ -1,14 +1,12 @@
 footer {
-  clear: both;
-
-  margin-top: 120px;
-  bottom: 0;
+  clear: both;  
+  margin-top: 32px;
+  bottom: 0px;
   width: 100%;
   font-family: "segoe UI";
   font-weight: 400;
   background-color: #000;
   text-align: center;
-
   color: aliceblue;
 
   /* footer postion is fixed from this following keyboard */
