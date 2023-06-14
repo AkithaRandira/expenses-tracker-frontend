@@ -103,6 +103,37 @@ export const updateIncomeAction = createAsyncThunk(
   }
 );
 
+//delete income action
+export const deleteIncomeAction = createAsyncThunk(
+  "income/delete",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    //get user token from store
+    const userToken = getState()?.users?.userAuth?.token;
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    };
+
+    try {
+      //making http call
+      const { data } = await axios.delete(
+        `${baseURL}/income/${payload?.id}`,
+        config
+      );
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
 //income slices
 const incomesSlices = createSlice({
   name: "incomes",
@@ -164,6 +195,22 @@ const incomesSlices = createSlice({
       state.serverError = undefined;
     });
     builder.addCase(updateIncomeAction.rejected, (state, action) => {
+      state.loading = false;
+      state.appError = action?.payload?.msg;
+      state.serverError = action?.error?.msg;
+    });
+
+    //delete income
+    builder.addCase(deleteIncomeAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(deleteIncomeAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.incomeDeleted = action?.payload;
+      state.appError = undefined;
+      state.serverError = undefined;
+    });
+    builder.addCase(deleteIncomeAction.rejected, (state, action) => {
       state.loading = false;
       state.appError = action?.payload?.msg;
       state.serverError = action?.error?.msg;
